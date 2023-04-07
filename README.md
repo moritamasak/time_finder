@@ -31,7 +31,7 @@
 <https://app.diagrams.net/#G1cUKq-9DoV2fFSyfuyQ5boNd32hNXHDAX>
 
 ## ER図
-![ER図](er.png)
+![ER図](er1.png)
 
 ## 画面遷移図
 ![画面遷移図](transition_diagram.png)
