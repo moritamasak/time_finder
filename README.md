@@ -13,7 +13,7 @@
 * onesignal
 
 ## 実行手順
-* \$ git clone git@github.com:moritamasak/time_finder.git 
+* \$ git clone git@github.com:moritamasak/time_finder.git
 * \$ cd time_finder
 * \$ bundle install
 * \$ yarn install
