@@ -1,14 +1,13 @@
 <% if current_user.try(:admin?) %>
-  <h1>ステータス_admin</h1>
+  <h1>ステータス一覧_admin</h1>
 <% else %>
-  <h1>ステータス</h1>
+  <h1>ステータス一覧</h1>
 <% end %>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Description</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,10 +16,9 @@
     <% @statuses.each do |status| %>
       <tr>
         <td><%= status.name %></td>
-        <td><%= status.description %></td>
         <td><%= link_to 'Show', status %></td>
-        <td><%= link_to 'Edit', edit_status_path(status) %></td>
-        <td><%= link_to 'Destroy', status, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'ステータスを編集する', edit_status_path(status) %></td>
+        <td><%= link_to 'ステータスを削除します', status, method: :delete, data: { confirm: '削除しますがよろしいですか？' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Status', new_status_path %>
+<%= link_to 'ステータスを作成する', new_status_path %>
