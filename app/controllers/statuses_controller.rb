@@ -2,29 +2,26 @@ class StatusesController < ApplicationController
   before_action :set_status, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: [:new, :create,:update, :destroy]
 
-  # GET /statuses or /statuses.json
   def index
-    @statuses = Status.all
+    if current_user.present?
+      @statuses = current_user.statuses.all
+    else
+      redirect_to new_user_session_path
+    end
   end
 
-  # GET /statuses/1 or /statuses/1.json
   def show
   end
 
-  # GET /statuses/new
   def new
     @status = Status.new
   end
 
-  # GET /statuses/1/edit
   def edit
   end
 
-  # POST /statuses or /statuses.json
   def create
-    @status = Status.new(status_params)
-    @status.user_id = current_user.id
-
+    @status = current_user.statuses.build(status_params)
     respond_to do |format|
       if @status.save
         format.html { redirect_to status_url(@status), notice: "Status was successfully created." }
@@ -36,7 +33,9 @@ class StatusesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /statuses/1 or /statuses/1.json
+  def status_selection
+  end
+
   def update
     respond_to do |format|
       if @status.update(status_params)
@@ -49,7 +48,6 @@ class StatusesController < ApplicationController
     end
   end
 
-  # DELETE /statuses/1 or /statuses/1.json
   def destroy
     @status.destroy
 
@@ -60,12 +58,10 @@ class StatusesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_status
       @status = Status.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def status_params
       params.require(:status).permit(:name, :description)
     end
