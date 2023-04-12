@@ -1,6 +1,7 @@
 <div class="container marketing">
   <div class="row d-flex justify-content-center">
     <div class="col-10 mt-5">
+      <h1>FOLLOWERS</h1>
       <table class="table text-center">
         <thead>
           <tr>
@@ -17,13 +18,15 @@
                 <% end %>
               </td>
               <td>
-                <% if user.is_followed_by?(current_user) %>
-                  <%=link_to user_followers_path(user), method: :delete do %>
-                    <button type="button" class="btn btn btn-danger">フォロー解除</button>
-                  <% end %>
-                <% else %>
-                  <%=link_to user_followers_path(user), method: :post do %>
-                    <button type="button" class="btn btn btn-primary">フォロー</button>
+                <% if user != current_user %>
+                  <% if user.is_followed_by?(current_user) %>
+                    <%=link_to user_followers_path(user), method: :delete do %>
+                      <button type="button" class="btn btn btn-danger">フォロー解除</button>
+                    <% end %>
+                  <% else %>
+                    <%=link_to user_followers_path(user), method: :post do %>
+                      <button type="button" class="btn btn btn-primary">フォロー</button>
+                    <% end %>
                   <% end %>
                 <% end %>
               </td>
@@ -34,4 +37,3 @@
     </div>
   </div>
 </div>
-

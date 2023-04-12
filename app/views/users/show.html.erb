@@ -1,0 +1,16 @@
+<h1>マイページ</h1>
+<h2 class="fw-light">ユーザー名:<%= @user.name %></h2>
+<p class="text-samll"><%= link_to @user.bosses.count, bosses_user_path(@user) %> フォロー <%= link_to @user.subordinates.count,subordinates_user_path(@user)%>フォロワー</p>
+<% if @user == current_user %>
+  <p class="lead text-muted">You are viewing your own profile <%= current_user.email %></p>
+<% else %>
+  <% if @user.is_followed_by?(current_user) %>
+    <%= link_to user_followers_path(@user), method: :delete do %>
+      <button class="btn btn-primary">フォロー解除する</button>
+    <% end %>
+  <% else %>
+    <%= link_to user_followers_path(@user), method: :post do %>
+      <button class="btn btn-danger">フォローする</button>
+    <% end %>
+  <% end %>  
+<% end %>
