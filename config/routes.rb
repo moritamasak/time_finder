@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   resources :statuses do
     get :status_selection, on: :member
+    post :status_selection, on: :member
   end
   root to: "statuses#index"
   if Rails.env.development?
