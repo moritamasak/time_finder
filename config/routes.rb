@@ -7,9 +7,7 @@ Rails.application.routes.draw do
     get :subordinates, on: :member
   end
   resources :statuses do
-    member do
-      get '/statuses/status_selection', to: 'statuses#status_selection'
-    end
+    get :status_selection, on: :member
   end
   root to: "statuses#index"
   if Rails.env.development?

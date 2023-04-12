@@ -24,7 +24,7 @@ class StatusesController < ApplicationController
     @status = current_user.statuses.build(status_params)
     respond_to do |format|
       if @status.save
-        format.html { redirect_to status_url(@status), notice: "Status was successfully created." }
+        format.html { redirect_to root_path, notice: "Status was successfully created." }
         format.json { render :show, status: :created, location: @status }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,6 +34,11 @@ class StatusesController < ApplicationController
   end
 
   def status_selection
+    #ここで登録を完了したら,フォローユーザー一覧ページに飛ばす
+    
+   
+
+    # redirect_to bosses_user_path(current_user)
   end
 
   def update
