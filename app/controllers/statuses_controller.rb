@@ -24,7 +24,7 @@ class StatusesController < ApplicationController
     @status = current_user.statuses.build(status_params)
     respond_to do |format|
       if @status.save
-        format.html { redirect_to status_url(@status), notice: "Status was successfully created." }
+        format.html { redirect_to statuses_url, notice: "ステータスを作成しました." }
         format.json { render :show, status: :created, location: @status }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,12 +34,13 @@ class StatusesController < ApplicationController
   end
 
   def status_selection
+    #ここで登録を完了したら,マイページ(user_path(current_user)に飛ばす
   end
 
   def update
     respond_to do |format|
       if @status.update(status_params)
-        format.html { redirect_to status_url(@status), notice: "Status was successfully updated." }
+        format.html { redirect_to statuses_url, notice: "ステータスを変更しました." }
         format.json { render :show, status: :ok, location: @status }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +53,7 @@ class StatusesController < ApplicationController
     @status.destroy
 
     respond_to do |format|
-      format.html { redirect_to statuses_url, notice: "Status was successfully destroyed." }
+      format.html { redirect_to statuses_url, notice: "ステータスを削除しました." }
       format.json { head :no_content }
     end
   end
@@ -63,6 +64,6 @@ class StatusesController < ApplicationController
     end
 
     def status_params
-      params.require(:status).permit(:name, :description)
+      params.require(:status).permit(:name, :description, :user_id)
     end
 end
