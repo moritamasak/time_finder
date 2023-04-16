@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   validates :name, presence: true
   has_many :statuses
-
+  belongs_to :status
   has_many :followers, foreign_key: :boss_id, dependent: :destroy
   has_many :bosses, through: :followers, source: :subordinate
 

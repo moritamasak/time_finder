@@ -3,26 +3,31 @@
 <% else %>
   <h1>ステータス一覧</h1>
 <% end %>
-
 <table>
   <thead>
     <tr>
+      <th>選択</th>
       <th>ステータス項目</th>
+      <th>説明</th>
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @statuses.each do |status| %>
-      <tr>
-        <td><%= status.name %></td>
-        <td><%= link_to 'ステータスを編集する', edit_status_path(status) %></td>
-        <td><%= link_to 'ステータスを削除します', status, method: :delete, data: { confirm: '削除しますがよろしいですか？' } %></td>
-      </tr>
+    <%= form_with(scope: :status, url:user_path(current_user), method: :get,local: true ) do |form| %>
+      <% @statuses.each do |status| %>
+        <tr>
+          <td><%= form.radio_button(:status_id, status.id) %></td>
+          <td><%= status.name %></td>
+          <td><%= status.description %></td>
+          <td><%= link_to 'ステータスを編集する', edit_status_path(status) %></td>
+          <td><%= link_to 'ステータスを削除します', status, method: :delete, data: { confirm: '削除しますがよろしいですか？' } %></td>
+        </tr>
+      <% end %>
+      <%= form.submit "ステータス登録"%>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<%= link_to '選択したステータスを登録する', user_path(current_user) %><br>
 <%= link_to 'ステータスを作成する', new_status_path %>
