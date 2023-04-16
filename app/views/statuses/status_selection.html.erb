@@ -3,7 +3,7 @@
   <div class="field">
     <%= form.label :ステータス項目 %>
     <% current_user.statuses.each do |status| %>
-      <%= form.radio_button :status_id, status.name %>
+      <%= form.radio_button :name, status.name %>
       <%= status.name %>
     <% end %>
   </div>

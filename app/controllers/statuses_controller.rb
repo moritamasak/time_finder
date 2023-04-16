@@ -3,8 +3,9 @@ class StatusesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create,:update, :destroy]
 
   def index
+
     if current_user.present?
-      @statuses = current_user.statuses.all
+      @statuses = Status.all
     else
       redirect_to new_user_session_path
     end
@@ -34,7 +35,8 @@ class StatusesController < ApplicationController
   end
 
   def status_selection
-    #ここで登録を完了したら,マイページ(user_path(current_user)に飛ばす
+    
+    #ここで登録を完了したら,マイページ(user_path(current_user))に飛ばす
   end
 
   def update
@@ -64,6 +66,6 @@ class StatusesController < ApplicationController
     end
 
     def status_params
-      params.require(:status).permit(:name, :description, :user_id)
+      params.require(:status).permit(:name, :description)
     end
 end
