@@ -5,7 +5,7 @@ class StatusesController < ApplicationController
   def index
 
     if current_user.present?
-      @statuses = Status.all
+      @statuses = current_user.statuses
     else
       redirect_to new_user_session_path
     end
@@ -25,7 +25,7 @@ class StatusesController < ApplicationController
     @status = current_user.statuses.build(status_params)
     respond_to do |format|
       if @status.save
-        format.html { redirect_to statuses_url, notice: "ステータスを作成しました." }
+        format.html { redirect_to statuses_url}
         format.json { render :show, status: :created, location: @status }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,15 +34,10 @@ class StatusesController < ApplicationController
     end
   end
 
-  def status_selection
-    
-    #ここで登録を完了したら,マイページ(user_path(current_user))に飛ばす
-  end
-
   def update
     respond_to do |format|
       if @status.update(status_params)
-        format.html { redirect_to statuses_url, notice: "ステータスを変更しました." }
+        format.html { redirect_to statuses_url }
         format.json { render :show, status: :ok, location: @status }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,9 +48,8 @@ class StatusesController < ApplicationController
 
   def destroy
     @status.destroy
-
     respond_to do |format|
-      format.html { redirect_to statuses_url, notice: "ステータスを削除しました." }
+      format.html { redirect_to statuses_url }
       format.json { head :no_content }
     end
   end
@@ -67,5 +61,14 @@ class StatusesController < ApplicationController
 
     def status_params
       params.require(:status).permit(:name, :description)
+    end
+
+    def notifier
+      Slack::Notifier.new(
+        ENV['SLACK_WEBHOOK_URL'],
+        channel: "##{ENV['SLACK_CHANNEL']}",
+        username: '上司', 
+        icon_emoji: ':sunglasses:'
+      )
     end
 end
