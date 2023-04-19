@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
   def show
-    notifier.ping("#{current_user.name}さんがステータスを登録しました、確認をお願いします。")
     @user = User.find(params[:id])
     if params[:status].present?
       @user.update_attribute(:status_id, params[:status][:status_id])
+      notifier.ping("#{current_user.name}さんがステータスを登録しました、確認をお願いします。")
     end
   end
 

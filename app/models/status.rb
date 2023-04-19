@@ -9,9 +9,10 @@ class Status < ApplicationRecord
     notifier = Slack::Notifier.new(
       ENV['SLACK_WEBHOOK_URL'],
       channel: "##{ENV['SLACK_CHANNEL']}",
-      username: '更新bot'
+      username: '更新bot',
+      icon_emoji: ':sunglasses:'
     )
-    notifier.ping("45分経過しました。ステータスを更新してください。")
+    notifier.ping("ステータスを更新してください。")
   end
-  
+
 end
