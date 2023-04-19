@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   root 'top#index'
+  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users
+
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
 
   resources :users do
     resource :followers, only: [:create, :destroy]
@@ -16,8 +21,5 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :messages
   end
-
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
+  
 end
