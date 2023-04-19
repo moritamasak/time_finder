@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
+
   def show
     @user = User.find(params[:id])
     if params[:status].present?
       @user.update_attribute(:status_id, params[:status][:status_id])
-
+      notifier.ping("#{current_user.name}さんがステータスを登録しました、確認をお願いします。")
     end
   end
 
@@ -28,6 +29,15 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name,:status_id,:id)
+  end
+
+  def notifier
+    Slack::Notifier.new(
+      ENV['SLACK_WEBHOOK_URL'],
+      channel: "##{ENV['SLACK_CHANNEL']}",
+      username: '上司', 
+      icon_emoji: ':sunglasses:'
+    )
   end
 
 end
