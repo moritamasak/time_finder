@@ -5,3 +5,11 @@
 .messages {
   text-align: center;
 }
+
+.content {
+  text-align: center;
+  border: 1px solid #000000;
+  display: inline-block;
+  display: flex;
+  justify-content: center;
+}
