@@ -1,3 +1,103 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+/* ユーザー名 */
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* フォロー数 */
+.text-samll {
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ステータス表示 */
+p {
+  font-size: 16px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.status {
+  font-size: 16px;
+  color: #555;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 600px; /* 枠組みの最大幅を指定 */
+  margin-left: auto; /* 左右中央に揃えるためのマージン */
+  margin-right: auto; /* 左右中央に揃えるためのマージン */
+}
+
+.status-name label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.status-name {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #555;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 600px; /* 枠組みの最大幅を指定 */
+  margin-left: auto; /* 左右中央に揃えるためのマージン */
+  margin-right: auto; /* 左右中央に揃えるためのマージン */
+}
+
+.status-description label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.status-description {
+  font-size: 16px;
+  color: #555;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 600px; /* 枠組みの最大幅を指定 */
+  margin-left: auto; /* 左右中央に揃えるためのマージン */
+  margin-right: auto; /* 左右中央に揃えるためのマージン */
+}
+
+/* フォローボタン */
+button {
+  font-size: 16px;
+  padding: 10px 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background-color: #0d3d56;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.item {
+  color: #000;
+  text-decoration: none;
+}
+
+.item:hover {
+  color: #555;
+  text-decoration: underline;
+}

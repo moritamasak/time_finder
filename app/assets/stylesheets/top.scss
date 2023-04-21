@@ -2,10 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-header {
+h1{
   background-color: #0d3d56;
-  color: white;
-  padding: 13px;
+  color: rgb(244, 234, 234);
+  padding: 20px;
+  margin-bottom: 0;
 }
 
 main section{
@@ -63,7 +64,8 @@ a.button {
   padding: 10px 5px;
   border-radius: 24px; // 角丸にするために境界半径を大きくします
   font-weight: bold;
-  min-width: fit-content; }
+  min-width: fit-content; 
+}
 
 a.button:hover {
   background-color: #1a659e;
@@ -90,9 +92,4 @@ nav a:hover {
   text-decoration: underline;
 }
 
-footer {
-  background-color: #0d3d56;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
+

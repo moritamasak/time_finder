@@ -1,3 +1,24 @@
+
+<header>
+  <% unless @top_page %>
+    <nav>
+      <ul>
+      <ul class="nav-right">
+        <% if user_signed_in? %>
+          <li><%= link_to "ステータス一覧", statuses_path %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to "マイページ", user_path(current_user) %></li>
+          <li><%= link_to "ユーザー一覧", users_path %></li>
+        <% else %>
+          <li><%= link_to "新規登録", new_user_registration_path %></li>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  <% end %>
+</header>
+<h1>メッセージ画面</h1>
+
 <% if @over_ten %>
   <%= link_to '以前のメッセージ', '?m=all' %>
 <% end %>
@@ -28,7 +49,7 @@
     <%= f.text_area :body, class: "form-control" %>
   </div>
     <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
-  <div>
+  <div class="messages">
     <%= f.submit "メッセージを送る" %>
   </div>
 <% end %>

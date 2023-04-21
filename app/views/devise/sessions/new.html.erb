@@ -1,7 +1,7 @@
 <div class="box2">
   <div class="box-inner">
     <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-    <h1>ログイン</h1>
+    <h2>ログイン</h2>
     <div class="box-email">
       <%= f.label :email, "Eメール" %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -12,7 +12,6 @@
           <%= f.label :password, "パスワード" %>
         </div>
         <div class="column-right">
-          <%= link_to "パスワードを忘れた場合", new_user_password_path %>
         </div>
       </div>
       <%= f.password_field :password, autocomplete: "current-password" %>
