@@ -1,8 +1,5 @@
 ja:
   activerecord:
-    errors:
-      models:
-        user:
-          attributes:
-            status:
-              required: "必要な値です"
+  errors:
+    messages:
+      record_invalid: "バリデーションに失敗しました: %{errors}"
