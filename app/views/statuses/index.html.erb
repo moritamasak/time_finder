@@ -1,31 +1,49 @@
-<% if current_user.try(:admin?) %>
-  <h1>ステータス一覧.</h1>
-<% else %>
-  <h1>ステータス一覧</h1>
-<% end %>
-<table>
-  <thead>
-    <tr>
-      <th>選択</th>
-      <th>ステータス項目</th>
-      <th>説明</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= form_with(scope: :status, url:user_path(current_user), method: :get,local: true ) do |form| %>
-      <% @statuses.each do |status| %>
-        <tr>
-          <td><%= form.radio_button(:status_id, status.id) %></td>
-          <td><%= status.name %></td>
-          <td><%= status.description %></td>
-          <td><%= link_to 'ステータスを編集する', edit_status_path(status) %></td>
-          <td><%= link_to 'ステータスを削除します', status, method: :delete, data: { confirm: '削除しますがよろしいですか？' } %></td>
-        </tr>
+    <header>
+      <% unless @top_page %>
+        <nav>
+          <ul>
+          <ul class="nav-right">
+            <% if user_signed_in? %>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "マイページ", user_path(current_user) %></li>
+            <% else %>
+              <li><%= link_to "新規登録", new_user_registration_path %></li>
+              <li><%= link_to "ログイン", new_user_session_path %></li>
+            <% end %>
+            <% if current_user.try(:admin?) %>
+              <li><%= link_to "管理者画面", rails_admin_path %></li>
+            <% end %>
+          </ul>
+        </nav>
       <% end %>
-      <%= form.submit "ステータス登録"%>
-    <% end %>
-  </tbody>
-</table>
+    </header>
+<% if current_user.try(:admin?) %>
+  <h1><%= current_user.name %>さんのステータス一覧.</h1>
+<% else %>
+  <h1><%= current_user.name %>さんのテータス一覧</h1>
+<% end %>
 
-<%= link_to 'ステータスを作成する', new_status_path %>
+<div class="status-container">
+  <%= form_with(scope: :status, url:user_path(current_user), method: :get, local: true ) do |form| %>
+    <% @statuses.each do |status| %>
+      <div class="status-box">
+        <div class="status-header">
+          <%= form.radio_button(:status_id, status.id) %>
+          <div>
+            <span><%= status.name %></span>
+          </div>
+        </div>
+        <div class="status-description">
+          <label>詳細:</label>
+          <p><%= status.description %></p>
+        </div>
+        <div class="link-buttons">
+          <%= link_to 'ステータスを編集する', edit_status_path(status), class: 'edit-status-link' %>
+          <%= link_to 'ステータスを削除します', status, method: :delete, data: { confirm: '削除しますがよろしいですか？' }, class: 'delete-status-link' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= form.submit "ステータス登録", class: "submit-button" %><br>
+<% end %>
+<%= link_to 'ステータスを作成する', new_status_path, class: 'new-status-link' %>

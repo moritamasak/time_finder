@@ -3,7 +3,6 @@ class StatusesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create,:update, :destroy]
 
   def index
-
     if current_user.present?
       @statuses = current_user.statuses
     else
@@ -65,9 +64,9 @@ class StatusesController < ApplicationController
 
     def notifier
       Slack::Notifier.new(
-        ENV['SLACK_WEBHOOK_URL'],
-        channel: "##{ENV['SLACK_CHANNEL']}",
-        username: '上司', 
+        ENV['SLACK_WEBHOOK_URL2'],
+        channel: "##{ENV['SLACK_CHANNEL2']}",
+        username: '更新Bot', 
         icon_emoji: ':sunglasses:'
       )
     end

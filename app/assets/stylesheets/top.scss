@@ -2,10 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-header {
+h1{
   background-color: #0d3d56;
-  color: white;
-  padding: 13px;
+  color: rgb(244, 234, 234);
+  padding: 20px;
+  margin-bottom: 0;
 }
 
 main section{
@@ -38,11 +39,16 @@ main section:before {
   z-index: 0;
 }
 
-section h2, section p, section a {
+section h2, h3,section p, section a {
   text-align: center; // 要素を中央寄せにする
 }
 
 h2 {
+  margin-bottom: 50px; // 下マージンを20pxに設定
+  font-size: 42px; // フォントサイズを32pxに設定
+}
+
+h3 {
   margin-bottom: 50px; // 下マージンを20pxに設定
   font-size: 42px; // フォントサイズを32pxに設定
 }
@@ -56,14 +62,17 @@ p {
 }
 
 a.button {
+  font-size: 16px;
   display: inline-block;
   background-color: #0d3d56;
   color: white;
   text-decoration: none;
-  padding: 10px 5px;
+  padding: 5px 5px;
   border-radius: 24px; // 角丸にするために境界半径を大きくします
   font-weight: bold;
-  min-width: fit-content; }
+  min-width: fit-content; 
+  width: fit-content;
+}
 
 a.button:hover {
   background-color: #1a659e;
@@ -90,9 +99,4 @@ nav a:hover {
   text-decoration: underline;
 }
 
-footer {
-  background-color: #0d3d56;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
+

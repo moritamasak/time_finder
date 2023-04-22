@@ -1,3 +1,146 @@
 // Place all the styles related to the statuses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+@import "bootstrap";
+
+.status-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.status-box {
+  width: 30%;
+  margin: 20px;
+  float: left;
+  background-color: #ebed85;
+  border: 1px solid rgb(233, 236, 42);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-sizing: border-box; // ボックスモデルをborder-boxに設定
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.status-header input[type="radio"] {
+  margin-right: 10px; // ラジオボタンとテキストの間の余白を設定
+}
+
+.status-description {
+  margin-top: 10px;
+}
+
+.link-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-status-link,
+.delete-status-link {
+  background-color: #0b93dc;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.delete-status-link {
+  background-color: #e74c3c;
+}
+
+.edit-status-link:hover,
+.delete-status-link:hover {
+  opacity: 0.8;
+}
+
+.submit-button {
+  width: 20%;
+  margin: 50px;
+  background-color: #0d3d56;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  opacity: 0.8;
+}
+
+.new-status-link {
+  width: 20%;
+  margin: 50px;
+  display: inline-block;
+  background-color: #0d3d56;
+  color: white !important;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-status-link:hover {
+  opacity: 0.8;
+
+}
+
+.field {
+  margin: 10px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.field input[type="text"],
+.field textarea {
+  width: 50%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.actions {
+  text-align: center;
+}
+.actions input[type="submit"] {
+  background-color: #0d3d56;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.actions input[type="submit"]:hover {
+  background-color: #072339;
+}

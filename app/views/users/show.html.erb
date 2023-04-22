@@ -1,21 +1,37 @@
+  <header>
+    <% unless @top_page %>
+      <nav>
+        <ul>
+        <ul class="nav-right">
+          <% if user_signed_in? %>
+            <li><%= link_to "ステータス一覧", statuses_path %></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to "マイページ", user_path(current_user) %></li>
+            <li><%= link_to "ユーザー一覧", users_path %></li>
+          <% else %>
+            <li><%= link_to "新規登録", new_user_registration_path %></li>
+            <li><%= link_to "ログイン", new_user_session_path %></li>
+          <% end %>
+          <% if current_user.try(:admin?) %>
+            <li><%= link_to "管理者画面", rails_admin_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    <% end %>
+  </header>
 <h1>マイページ</h1>
-<h2 class="fw-light">ユーザー名:<%= current_user.name %></h2>
+<h2 class="fw-light">ユーザー名:<%= @user.name %></h2>
 <p class="text-samll"><%= link_to current_user.bosses.count, bosses_user_path(current_user) %> フォロー <%= link_to current_user.subordinates.count,subordinates_user_path(current_user)%>フォロワー</p>
 <% if current_user %>
-  <p class="lead text-muted">You are viewing your own profile <%= current_user.email %></p>
-  <p>
-  <strong>Status:</strong>
-  <%= Status.find(@user.status_id).name %>
-  <%= Status.find(@user.status_id).description %>
-  </p>
-<% else %>
-  <% if current_user.is_followed_by?(current_user) %>
-    <%= link_to user_followers_path(current_user), method: :delete do %>
-      <button class="btn btn-primary">フォロー解除する</button>
-    <% end %>
-  <% else %>
-    <%= link_to user_followers_path(current_user), method: :post do %>
-      <button class="btn btn-danger">フォローする</button>
-    <% end %>
-  <% end %>  
+  <p class="status">
+  <strong>登録したステータス</strong>
+  <div class="status-name">
+    <label>ステータス:</label>
+      <%= Status.find(@user.status_id).name %>
+  </div>
+  <div class="status-description">
+    <label>詳細:</label>
+      <%= Status.find(@user.status_id).description %>
+  </div>
+  </p> 
 <% end %>

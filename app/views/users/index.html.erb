@@ -1,3 +1,21 @@
+<header>
+  <% unless @top_page %>
+    <nav>
+      <ul>
+      <ul class="nav-right">
+        <% if user_signed_in? %>
+          <li><%= link_to "ステータス一覧", statuses_path %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to "マイページ", user_path(current_user) %></li>
+          <li><%= link_to "ユーザー一覧", users_path %></li>
+        <% else %>
+          <li><%= link_to "新規登録", new_user_registration_path %></li>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  <% end %>
+</header>
 <div class="container marketing">
   <div class="row d-flex justify-content-center">
     <div class="col-10 mt-5">
@@ -11,7 +29,11 @@
           <% @users.each do |user| %>
             <tr>
               <td>
-                <%= link_to user_path(user) do %>
+                <% if user.status_id %>
+                  <%= link_to user_path(user) do %>
+                    <%= user.name %>
+                  <% end %>
+                <% else %>
                   <%= user.name %>
                 <% end %>
               </td>

@@ -14,7 +14,16 @@
  *= require_self
  */
  @import "bootstrap";
- nav {
+ @import "statuses";
+
+ header {
+    background-color: #0d3d56;
+    color: rgb(244, 234, 234) !important;
+    padding: 20px;
+    margin-bottom: 0;
+}
+
+nav {
   ul {
     list-style: none;
     margin: 0;
@@ -28,6 +37,16 @@
     float: right;
     li {
       text-align: right;
+      a {
+        color: white !important;
+      }
     }
   }
+}
+
+footer {
+  background-color: #0d3d56;
+  color: white;
+  padding: 20px;
+  text-align: center;
 }

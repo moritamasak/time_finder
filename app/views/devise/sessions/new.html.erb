@@ -1,7 +1,25 @@
+<header>
+  <% unless @top_page %>
+    <nav>
+      <ul>
+      <ul class="nav-right">
+        <% if user_signed_in? %>
+          <li><%= link_to "ステータス一覧", statuses_path %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to "マイページ", user_path(current_user) %></li>
+          <li><%= link_to "ユーザー一覧", users_path %></li>
+        <% else %>
+          <li><%= link_to "新規登録", new_user_registration_path %></li>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  <% end %>
+</header>
 <div class="box2">
   <div class="box-inner">
     <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-    <h1>ログイン</h1>
+    <h2>ログイン</h2>
     <div class="box-email">
       <%= f.label :email, "Eメール" %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -12,7 +30,6 @@
           <%= f.label :password, "パスワード" %>
         </div>
         <div class="column-right">
-          <%= link_to "パスワードを忘れた場合", new_user_password_path %>
         </div>
       </div>
       <%= f.password_field :password, autocomplete: "current-password" %>
@@ -23,3 +40,9 @@
     <% end %>
   </div>
 </div>
+
+
+
+
+
+
