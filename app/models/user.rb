@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   validates :name, presence: true
-  has_many :statuses 
+  has_many :statuses, dependent: :destroy
   belongs_to :status, optional:true
   has_many :followers, foreign_key: :boss_id, dependent: :destroy
   has_many :bosses, through: :followers, source: :subordinate
