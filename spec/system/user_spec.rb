@@ -60,9 +60,9 @@ RSpec.describe 'ユーザ機能', type: :system do
         fill_in 'user_password', with: 'admin_password'
         click_button "ログイン"
         click_link '管理者画面'
-        expect(page).to have_content 'サイト管理'
+        expect(page).to have_content 'Time Finder Admin'
       end
     end
   end
-  
+
 end
