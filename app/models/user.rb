@@ -29,6 +29,8 @@ class User < ApplicationRecord
     end
   end
 
+  attr_accessor :admin_mode
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
 

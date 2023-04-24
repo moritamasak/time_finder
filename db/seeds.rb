@@ -7,8 +7,8 @@ User.create!(
   admin: true
 )
 
-#5人分のユーザーのデータを作成
-5.times do |n|
+#6人分のユーザーのデータを作成
+6.times do |n|
   name = "user_name#{n+1}"
   email = "user#{n+1}@example.com"
   password = "password#{n+1}"
@@ -30,19 +30,29 @@ User.all.each do |user|
   end
 end
 
-# ユーザー1が他のユーザーをフォロー
-user1 = User.first
-User.where.not(id: user1.id).each do |other_user|
-  Follower.create!(boss_id: user1.id, subordinate_id: other_user.id)
+#1番目ユーザが2~6番目のユーザをフォローする
+(2..6).each do |user_number|
+  User.first.subordinates << User.find(user_number)
+  User.third.subordinates << User.find(user_number)
+  User.fourth.subordinates << User.find(user_number)
+  User.fifth.subordinates << User.find(user_number)
+  User.find(6).subordinates << User.find(user_number)
 end
 
-# Status.all.each do |status|
-#   Message.create!(
-#     body: "ユーザー1のコメントです",
-#     user_id: user1.id,
-#     conversation_id: conversation.id
-#   )
-# end
+
+#2番目のユーザが3~7までのユーザにメッセージを送る
+(3..7).each do |recipient_id|
+  conversation = Conversation.create!(sender_id: 2, recipient_id: recipient_id)
+  
+  5.times do |n|
+    Message.create!(
+      body: "こんにちは、ユーザー#{recipient_id}! これはメッセージ#{n+1}です。",
+      conversation_id: conversation.id,
+      user_id: 2,
+      read: false
+    )
+  end
+end
 
 
 

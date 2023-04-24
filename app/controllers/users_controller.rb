@@ -6,6 +6,12 @@ class UsersController < ApplicationController
       @user.update_attribute(:status_id, params[:status][:status_id])
       notifier.ping("#{current_user.name}さんがステータスを登録しました、確認をお願いします。")
     end
+
+    @user = User.find(params[:id])
+    if current_user && @user.status_id.blank?
+      redirect_to bosses_user_path(current_user), alert: 'ステータスが登録されていません。'
+    end
+
   end
 
   def index
@@ -23,6 +29,13 @@ class UsersController < ApplicationController
   def subordinates
     user = User.find(params[:id])
     @users = user.subordinates
+  end
+
+  def toggle_admin_mode
+    if current_user.admin?
+      session[:admin_mode] = !session[:admin_mode]
+    end
+    redirect_to root_path
   end
 
   private

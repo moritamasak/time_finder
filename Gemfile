@@ -21,10 +21,21 @@ gem 'dotenv-rails'
 gem 'whenever', require: false
 gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
+gem 'net-smtp'
+gem 'net-imap'
+gem 'net-pop'
+gem 'rails-i18n'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
+  gem 'byebug'
+  gem 'spring'
+  gem 'rspec-rails'
+  gem 'spring-commands-rspec'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'launchy'
 end
 
 group :development do
