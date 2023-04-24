@@ -10,10 +10,8 @@ class Ability
       can :manage, :all
     elsif user.admin?
       can :read, :all
-      # ここに、一般ユーザーとしてログインしているときの管理者権限を定義する
     else
       can :read, :all
-      # ここに、一般ユーザーの権限を定義する
     end
 
     if user.try(:admin?)
