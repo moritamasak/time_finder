@@ -3,7 +3,19 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user, admin_mode = false)
+    user ||= User.new
+
+    if user.admin? && admin_mode
+      can :manage, :all
+    elsif user.admin?
+      can :read, :all
+      # ここに、一般ユーザーとしてログインしているときの管理者権限を定義する
+    else
+      can :read, :all
+      # ここに、一般ユーザーの権限を定義する
+    end
+
     if user.try(:admin?)
       can :access, :rails_admin
       can :manage, :all

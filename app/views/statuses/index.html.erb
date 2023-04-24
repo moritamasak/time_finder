@@ -13,7 +13,10 @@
             <% if current_user.try(:admin?) %>
               <li><%= link_to "管理者画面", rails_admin_path %></li>
             <% end %>
-          </ul>
+           <% if current_user&.admin? %>
+            <%= link_to "管理者モードの切り替え", toggle_admin_mode_path, method: :post %>
+            <p>Admin Mode: <%= @admin_mode ? "ON" : "OFF" %></p>
+          <% end %>
         </nav>
       <% end %>
     </header>

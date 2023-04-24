@@ -27,5 +27,7 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :messages
   end
-  
+
+  post 'toggle_admin_mode', to: 'application#toggle_admin_mode'
+ 
 end

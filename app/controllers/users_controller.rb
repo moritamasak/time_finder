@@ -31,6 +31,13 @@ class UsersController < ApplicationController
     @users = user.subordinates
   end
 
+  def toggle_admin_mode
+    if current_user.admin?
+      session[:admin_mode] = !session[:admin_mode]
+    end
+    redirect_to root_path
+  end
+
   private
 
   def user_params
