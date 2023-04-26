@@ -1,26 +1,7 @@
-    <header>
-      <% unless @top_page %>
-        <nav>
-          <ul>
-          <ul class="nav-right">
-            <% if user_signed_in? %>
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-              <li><%= link_to "マイページ", user_path(current_user) %></li>
-            <% else %>
-              <li><%= link_to "新規登録", new_user_registration_path %></li>
-              <li><%= link_to "ログイン", new_user_session_path %></li>
-            <% end %>
-            <% if current_user.try(:admin?) %>
-              <li><%= link_to "管理者画面", rails_admin_path %></li>
-            <% end %>
-          </ul>
-        </nav>
-      <% end %>
-    </header>
 <% if current_user.try(:admin?) %>
   <h1><%= current_user.name %>さんのステータス一覧.</h1>
 <% else %>
-  <h1><%= current_user.name %>さんのテータス一覧</h1>
+  <h1><%= current_user.name %>さんのステータス一覧</h1>
 <% end %>
 
 <div class="status-container">
@@ -44,6 +25,6 @@
       </div>
     <% end %>
   </div>
+<%= link_to 'ステータスを作成する', new_status_path, class: 'new-status-link' %>
   <%= form.submit "ステータス登録", class: "submit-button" %><br>
 <% end %>
-<%= link_to 'ステータスを作成する', new_status_path, class: 'new-status-link' %>

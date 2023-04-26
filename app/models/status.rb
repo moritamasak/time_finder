@@ -3,8 +3,9 @@ require 'dotenv-rails'
 
 class Status < ApplicationRecord
   belongs_to :user
-  validates :name, presence: true
+  validates :name, presence: true,length: { maximum: 20 }
   validates :description, length: { maximum: 40 } 
+  
   def self.update_status
     notifier = Slack::Notifier.new(
       ENV['SLACK_WEBHOOK_URL_2'],
