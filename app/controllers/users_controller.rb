@@ -12,6 +12,11 @@ class UsersController < ApplicationController
       redirect_to bosses_user_path(current_user), alert: 'ステータスが登録されていません。'
     end
 
+    @user = User.find(params[:id])
+    if @user.status_id.blank? || Status.find_by(id: @user.status_id).nil?
+      redirect_to statuses_path, alert: 'ステータスを作成してください。'
+    end
+
   end
 
   def index

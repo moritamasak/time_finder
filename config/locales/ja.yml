@@ -1,7 +1,5 @@
-# 日本語化テンプレ
 ja:
   activerecord:
-    # 全てのモデル記載
     models:
       user: ユーザー
       conversation: 会話
@@ -9,7 +7,6 @@ ja:
       follower: フォロワー
       status: ステータス
     attributes:
-      # 各モデルのカラム名を記載
       user:
         name: 名前
         email: メールアドレス
@@ -24,16 +21,23 @@ ja:
         email: メールアドレス
         content: お問い合わせ内容
     errors:
-      model:
-        status:
-          attributes:
-            name:
-              blank: "を入力してください"
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+        not_saved: 
+          one: "１つのエラーがあります。修正して再度送信して下さい。"
+      models:
+        status:
+          attributes:
+            name:
+              blank: "を入力してください"
+      template:
+        header:
+          one: "%{model}の保存ができませんでした."
+          other: "%{model}の保存ができませんでした"
+        body: "次の項目を確認してください:"
   date:
     abbr_day_names:
     - 日

@@ -1,6 +1,8 @@
 <p>
-  <strong>Name:</strong>
+  <strong>ステータス:</strong>
   <%= @status.name %>
+  <strong>詳細<strong>
+  <%= @status.description %>
 </p>
 
 <%= link_to 'Edit', edit_status_path(@status) %> |
